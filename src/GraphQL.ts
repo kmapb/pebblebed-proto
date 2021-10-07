@@ -4,12 +4,35 @@ const { ApolloServer, gql } = require('apollo-server');
 // that together define the "shape" of queries that are executed against
 // your data.
 const typeDefs = gql`
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
+  enum TimeOfDay {
+      DAY
+      NIGHT
+  }
 
-  # This "Book" type defines the queryable fields for every book in our data source.
-  type Book {
+  enum Weather {
+      RAIN
+      SUN
+      SNOW
+  }
+
+  # Puzzle: a plurality of tiles
+  type Puzzle {
     title: String
-    author: String
+    timeOfDay: 
+    id: String
+    height: Int
+    width: Int
+    tiles: [PositionedTiles]
+  }
+
+  type PositionedTile {
+    x, y: Int
+    scale: Int
+  }
+
+  type Tile {
+    id: String
+
   }
 
   # The "Query" type is special: it lists all of the available queries that
