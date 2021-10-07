@@ -6,6 +6,7 @@
         "module": "commonjs",
         "jsx": "react",
         "target": "es5",
-        "allowJs": false
+        "allowJs": false,
+        "esModuleInterop": true
     }
 }
