@@ -4,9 +4,13 @@
 		"sourceMap": true,
         "strictNullChecks": true,
         "module": "commonjs",
+	"moduleResolution": "node",
         "jsx": "react",
         "target": "es5",
         "allowJs": false,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+	"typeRoots": [
+            "node_modules/@types",
+	]
     }
 }
