@@ -1,19 +1,19 @@
-import { layer } from '../Png';
+import { layer, Layer } from '../Png';
 import { PNG } from 'pngjs';
 const fs = require('fs');
 
-test('We can smooosh up heartz.', async () => {
-   let result = fs.createReadStream(__dirname + '/../../assets/test/heart.png')
-   .pipe(
-       new PNG({
-           filterType: 4,
-       })
-   );
+const testBuffer = fs.readFileSync('./assets/test/heart.png');
 
-   console.log(result);
+function testPng(): PNG {
+    return new PNG(testBuffer);
+}
 
-// .on('parsed', hrt => {
-//        console.log('parsed!');
-//    }).pipe(fs.createWriteStream('/tmp/out.png'));
-//    return await result;
+test('Layers upon layerz', () => {
+    let base = testPng();
+    let layers: Layer[] = [];
+    for (var i = 1; i < 3; i++) {
+        layers.push({image: base, offset: { x: i * 4, y: i * 7}});
+    }
+    let ret = layer(base, layers);
+    fs.writeFileSync('/tmp/out.png', PNG.sync.write(ret));
 });
